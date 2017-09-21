@@ -29,6 +29,8 @@ along with phy2d.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <cmath>
 
+#include "Utils.hpp"
+
 namespace phy {
 
 /// @brief 2D vector class
@@ -65,7 +67,7 @@ class Vector {
     /// @brief Get magnitude of vector
     /// @return Magnitude of vector
     double mag() {
-        return sqrt(pow(x, 2) + pow(y, 2));
+        return hypot(x, y);
     }
 
     /// @brief Add to another vector
@@ -108,7 +110,7 @@ class Vector {
     /// @param a,b Vectors to get distance between
     /// @return Distance between vectors
     static double dist(Vector a, Vector b) {
-        return sqrt(pow(b.x - a.x, 2) + pow(b.y - a.y, 2));
+        return hypot(b.x - a.x, b.y - a.y);
     }
 };
 
