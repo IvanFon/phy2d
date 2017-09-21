@@ -70,6 +70,13 @@ class Vector {
         return hypot(x, y);
     }
 
+    /// @brief Normalize vector
+    /// @return Normalized vector
+    Vector norm() {
+        Vector vect(x / mag(), y / mag());
+        return vect;
+    }
+
     /// @brief Add to another vector
     /// @param other The other vector to add
     Vector operator+(Vector other) {

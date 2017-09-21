@@ -124,3 +124,20 @@ TEST_CASE("find distance between two vectors") {
     phy::Vector c2(-442.32, -122.3);
     CHECK(compare(phy::Vector::dist(c1, c2), sqrt(pow(c2.x - c1.x, 2) + pow(c2.y - c1.y, 2))));
 }
+
+TEST_CASE("normalize vectors") {
+    phy::Vector a(4, 12);
+    phy::Vector resa = a.norm();
+    CHECK(compare(resa.x, 0.316228032));
+    CHECK(compare(resa.y, 0.948684096));
+
+    phy::Vector b(221.42, 42.24242);
+    phy::Vector resb = b.norm();
+    CHECK(compare(resb.x, 0.98228367));
+    CHECK(compare(resb.y, 0.18739969));
+
+    phy::Vector c(1.22, 9.81);
+    phy::Vector resc = c.norm();
+    CHECK(compare(resc.x, 0.123411831));
+    CHECK(compare(resc.y, 0.992352513));
+}

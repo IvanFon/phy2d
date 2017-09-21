@@ -2,7 +2,7 @@
 #include <iostream>
 
 // Maximum difference between numbers to be considered close enough
-const double ERROR = 1.0 / 10000000;
+const double ERROR = 1e-5;
 
 // Compare floats & doubles correctly
 template<typename A, typename B>
