@@ -83,6 +83,7 @@ class Vector {
         Vector vect(0, 0);
         vect.x = x - other.x;
         vect.y = y - other.y;
+        return vect;
     }
 
     /// @brief Multiply by another vector
