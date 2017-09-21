@@ -8,6 +8,16 @@ set(CMAKE_CXX_STANDARD 14)
 include(ExternalProject)
 find_package(Git REQUIRED)
 
+# Modules
+set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
+  "${CMAKE_SOURCE_DIR}/cmake/Modules/"
+)
+
+# cppcheck
+find_package(cppcheck REQUIRED)
+file(GLOB CPPCHECK_SOURCES "${CMAKE_SOURCE_DIR}/inc/phy2d/*")
+include("${CMAKE_SOURCE_DIR}/cmake/cppcheck.cmake")
+
 # Get Catch from Github
 ExternalProject_Add(catch
   PREFIX ${CMAKE_BINARY_DIR}/catch
@@ -48,3 +58,6 @@ target_include_directories(${PROJECT_NAME}
   INTERFACE
   ${PROJECT_SOURCE_DIR}/inc
 )
+
+# run cppcheck with build
+add_dependencies(${PROJECT_NAME} cppcheck)
