@@ -80,6 +80,33 @@ TEST_CASE("using overloaded operators") {
         CHECK(compare(res.x, -11.185));
         CHECK(compare(res.y, -0.026832031));
     }
+    SECTION("comparison") {
+        phy::Vector aa;
+        phy::Vector ab;
+
+        phy::Vector ba(-92.1, 84.7);
+        phy::Vector bb(-92.1, 84.7);
+
+        phy::Vector ca(2444.5, -1.001);
+        phy::Vector cb(2444.5, -1.001);
+
+        SECTION("equal") {
+            CHECK(aa == ab);
+            CHECK(ba == bb);
+            CHECK(ca == cb);
+            CHECK_FALSE(aa == ba);
+            CHECK_FALSE(cb == ab);
+            CHECK_FALSE(ca == bb);
+        }
+        SECTION("not equal") {
+            CHECK(aa != ba);
+            CHECK(cb != ab);
+            CHECK(ca != bb);
+            CHECK_FALSE(aa != ab);
+            CHECK_FALSE(ba != bb);
+            CHECK_FALSE(ca != cb);
+        }
+    }
 }
 
 TEST_CASE("changing vector position") {

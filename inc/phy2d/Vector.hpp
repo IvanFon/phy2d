@@ -113,6 +113,20 @@ class Vector {
         return vect;
     }
 
+    /// @brief Compare if equal to another vector
+    /// @param other The other vector being compared
+    /// @return true if equal, false otherwise
+    bool operator==(Vector other) {
+        return x == other.x && y == other.y;
+    }
+
+    /// @brief Compare if not equal to another vector
+    /// @param other The other vector being compared
+    /// @return true if not equal, false otherwise
+    bool operator!=(Vector other) {
+        return !(*this == other);
+    }
+
     /// @brief Get distance between two vectors
     /// @param a,b Vectors to get distance between
     /// @return Distance between vectors
