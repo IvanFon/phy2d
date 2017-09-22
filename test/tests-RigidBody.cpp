@@ -16,13 +16,5 @@ TEST_CASE("rigid bodies can be created") {
         REQUIRE(compare(a.pos.x, 4.7));
         REQUIRE(compare(a.pos.y, -51.2));
         REQUIRE(compare(a.mass, 5.2));
-
-        phy::RigidBody b(phy::Vector(-221.0, 22.1200));
-        REQUIRE(compare(b.pos.x, -221.0));
-        REQUIRE(compare(b.pos.y, 22.1200));
-        REQUIRE(compare(b.mass, 0));
-
-        phy::RigidBody c(10.897);
-        REQUIRE(compare(c.mass, 10.897));
     }
 }

@@ -40,33 +40,13 @@ class RigidBody {
     double mass;
 
     /// @brief Create rigid body at (0, 0) with mass of 0
-    RigidBody() {
-        pos.x = 0;
-        pos.y = 0;
-        mass = 0;
-    }
+    RigidBody(): pos(Vector(0, 0)), mass(0) { }
 
-    /// @brief Create rigid body at specified position with specified mass
-    /// @param P Position
-    /// @param M Mass
+    /// @brief Create rigid body with specified position and mass
+    /// @param pos Position
+    /// @param mass Mass
     template <typename T>
-    RigidBody(Vector P, T M) {
-        pos = P;
-        mass = M;
-    }
-
-    /// @brief Create rigid body at specified position with mass 0
-    /// @param P Position
-    RigidBody(Vector P) {
-        pos = P;
-    }
-
-    /// @brief Create rigid body at (0, 0) with specified mass
-    /// @param M Mass
-    template <typename T>
-    RigidBody(T M) {
-        mass = M;
-    }
+    RigidBody(Vector pos, T mass): pos(pos), mass(mass) { }
 };
 
 }  // namespace phy

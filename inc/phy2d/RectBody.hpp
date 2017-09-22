@@ -39,22 +39,15 @@ class RectBody: public RigidBody {
     Vector size;
 
     /// @brief Create body at (0, 0) with size (0, 0) and mass 0
-    RectBody() {
-        pos = Vector(0, 0);
-        size = Vector(0, 0);
-        mass = 0;
-    }
+    RectBody(): RigidBody(Vector(0, 0), 0), size(Vector(0, 0)) { }
 
     /// @brief Create body with specified position, size and mass
-    /// @param P Position
-    /// @param S Size
-    /// @param M Mass
+    /// @param pos Position
+    /// @param size Size
+    /// @param mass Mass
     template <typename T>
-    RectBody(Vector P, Vector S, T M) {
-        pos = P;
-        size = S;
-        mass = M;
-    }
+    RectBody(Vector pos, Vector size, T mass): RigidBody(pos, mass),
+        size(size) { }
 };
 
 }  // namespace phy
