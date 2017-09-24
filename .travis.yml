@@ -1,0 +1,13 @@
+language: cpp
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      g++-5
+      gcc-5
+install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y -qq lcov curl
+script:
+  - mkdir build && cd build && cmake .. && make && ./unit-tests
