@@ -35,19 +35,24 @@ namespace phy {
 /// @brief Rectangular rigid body class
 class RectBody: public RigidBody {
  public:
-    /// @brief Size
-    Vector size;
-
     /// @brief Create body at (0, 0) with size (0, 0) and mass 0
-    RectBody(): RigidBody(Vector(0, 0), 0), size(Vector(0, 0)) { }
+    RectBody(): RigidBody(Vector(0, 0), 0) {
+        this->size = Vector(0, 0);
+    }
 
     /// @brief Create body with specified position, size and mass
     /// @param pos Position
     /// @param size Size
     /// @param mass Mass
     template <typename T>
-    RectBody(Vector pos, Vector size, T mass): RigidBody(pos, mass),
-        size(size) { }
+    RectBody(Vector pos, Vector size, T mass): RigidBody(pos, mass) {
+        this->size = size;
+    }
+
+    /// @brief Get my type
+    Types getType() {
+        return RECT;
+    }
 };
 
 }  // namespace phy

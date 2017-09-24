@@ -35,19 +35,24 @@ namespace phy {
 /// @brief Circular rigid body class
 class CircleBody: public RigidBody {
  public:
-    /// @brief Radius
-    double radius;
-
     /// @brief Create body at (0, 0) with radius 0 and mass 0
-    CircleBody(): RigidBody(Vector(0, 0), 0), radius(0) { }
+    CircleBody(): RigidBody(Vector(0, 0), 0) {
+        this->radius = 0;
+    }
 
     /// @brief Create body with specified position, radius and mass
     /// @param pos Position
     /// @param radius Radius
     /// @param mass Mass
     template <typename A, typename B>
-    CircleBody(Vector pos, A radius, B mass): RigidBody(pos, mass),
-        radius(radius) { }
+    CircleBody(Vector pos, A radius, B mass): RigidBody(pos, mass) {
+        this->radius = radius;
+    }
+
+    /// @brief Get my type
+    Types getType() {
+        return CIRCLE;
+    }
 };
 
 }  // namespace phy

@@ -39,6 +39,20 @@ class RigidBody {
     /// @brief Mass
     double mass;
 
+    /// @brief Size of RectBody child class
+    Vector size;
+
+    /// @brief Radius of CircleBody child class
+    double radius;
+
+    /// @brief Types of child classes
+    enum Types {
+        /// @brief CircleBody
+        CIRCLE,
+        /// @brief RectBody
+        RECT
+    };
+
     /// @brief Create rigid body at (0, 0) with mass of 0
     RigidBody(): pos(Vector(0, 0)), mass(0) { }
 
@@ -47,6 +61,9 @@ class RigidBody {
     /// @param mass Mass
     template <typename T>
     RigidBody(Vector pos, T mass): pos(pos), mass(mass) { }
+
+    /// @brief Get child class type
+    virtual Types getType() { }
 };
 
 }  // namespace phy
