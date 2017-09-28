@@ -4,6 +4,8 @@ project(phy2d)
 # C++14
 set(CMAKE_CXX_STANDARD 14)
 
+set(TRAVIS "NO" CACHE BOOL "If your name isn't Travis don't touch this.")
+
 # Fetch some dependencies from Git
 include(ExternalProject)
 find_package(Git REQUIRED)
@@ -14,9 +16,11 @@ set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 )
 
 # cppcheck
-find_package(cppcheck REQUIRED)
-file(GLOB CPPCHECK_SOURCES "${CMAKE_SOURCE_DIR}/inc/phy2d/*")
-include("${CMAKE_SOURCE_DIR}/cmake/cppcheck.cmake")
+if(NOT TRAVIS)
+  find_package(cppcheck REQUIRED)
+  file(GLOB CPPCHECK_SOURCES "${CMAKE_SOURCE_DIR}/inc/phy2d/*")
+  include("${CMAKE_SOURCE_DIR}/cmake/cppcheck.cmake")
+endif()
 
 # Get Catch from Github
 ExternalProject_Add(catch
@@ -60,4 +64,6 @@ target_include_directories(${PROJECT_NAME}
 )
 
 # run cppcheck with build
-add_dependencies(${PROJECT_NAME} cppcheck)
+if(NOT TRAVIS)
+  add_dependencies(${PROJECT_NAME} cppcheck)
+endif()
