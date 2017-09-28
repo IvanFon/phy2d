@@ -15,11 +15,18 @@ set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
   "${CMAKE_SOURCE_DIR}/cmake/Modules/"
 )
 
-# cppcheck
+# cppcheck and cpplint
 if(NOT TRAVIS)
+  # get sources
+  file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/inc/phy2d/*")
+  set(CPPCHECK_SOURCES ${SOURCES})
+  set(CPPLINT_SOURCES ${SOURCES})
+
   find_package(cppcheck REQUIRED)
-  file(GLOB CPPCHECK_SOURCES "${CMAKE_SOURCE_DIR}/inc/phy2d/*")
   include("${CMAKE_SOURCE_DIR}/cmake/cppcheck.cmake")
+
+  find_package(cpplint REQUIRED)
+  include("${CMAKE_SOURCE_DIR}/cmake/cpplint.cmake")
 endif()
 
 # Get Catch from Github
@@ -63,7 +70,8 @@ target_include_directories(${PROJECT_NAME}
   ${PROJECT_SOURCE_DIR}/inc
 )
 
-# run cppcheck with build
+# run cppcheck and cpplint with default build
 if(NOT TRAVIS)
   add_dependencies(${PROJECT_NAME} cppcheck)
+  add_dependencies(${PROJECT_NAME} cpplint)
 endif()
