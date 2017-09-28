@@ -48,7 +48,7 @@ class World {
 
     /// @brief Add rigid body to world
     /// @param body The rigid body to add
-    void add(RigidBody &body) {
+    void add(RigidBody &body) {  /* NOLINT(runtime/references) */
         bodies.push_back(&body);
     }
 
