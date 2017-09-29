@@ -12,7 +12,7 @@ find_package(Git REQUIRED)
 
 # Modules
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
-  "${CMAKE_SOURCE_DIR}/cmake/Modules/"
+  "${CMAKE_SOURCE_DIR}/cmake/"
 )
 
 # cppcheck and cpplint
@@ -23,10 +23,10 @@ if(NOT TRAVIS)
   set(CPPLINT_SOURCES ${SOURCES})
 
   find_package(cppcheck REQUIRED)
-  include("${CMAKE_SOURCE_DIR}/cmake/cppcheck.cmake")
+  include(cppcheck)
 
   find_package(cpplint REQUIRED)
-  include("${CMAKE_SOURCE_DIR}/cmake/cpplint.cmake")
+  include(cpplint)
 endif()
 
 # Get Catch from Github
