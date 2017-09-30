@@ -4,7 +4,10 @@ project(phy2d)
 # C++14
 set(CMAKE_CXX_STANDARD 14)
 
+# Options
 set(TRAVIS "NO" CACHE BOOL "If your name isn't Travis don't touch this.")
+set(COVERALLS "NO" CACHE BOOL "Enable test coverage")
+set(COVERALLS_UPLOAD "NO" CACHE BOOL "Upload coverage data to coveralls")
 
 # Fetch some dependencies from Git
 include(ExternalProject)
@@ -13,12 +16,20 @@ find_package(Git REQUIRED)
 # Modules
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
   "${CMAKE_SOURCE_DIR}/cmake/"
+  "${CMAKE_SOURCE_DIR}/cmake/coveralls-cmake/cmake"
 )
+
+# get sources
+file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/inc/phy2d/*")
+
+# Test coverage
+if(COVERALLS)
+  include(Coveralls)
+  coveralls_turn_on_coverage()
+endif()
 
 # cppcheck and cpplint
 if(NOT TRAVIS)
-  # get sources
-  file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/inc/phy2d/*")
   set(CPPCHECK_SOURCES ${SOURCES})
   set(CPPLINT_SOURCES ${SOURCES})
 
@@ -55,6 +66,15 @@ set(phy2d_VERSION_STRING "${phy2d_VERSION_MAJOR}.${phy2d_VERSION_MINOR}.${phy2d_
 
 add_library(${PROJECT_NAME} INTERFACE)
 add_library(sub::phy2d ALIAS ${PROJECT_NAME})
+
+# Test coverage
+if(COVERALLS)
+  coveralls_setup(
+    "${SOURCES}"
+    ${COVERALLS_UPLOAD}
+    "${CMAKE_SOURCE_DIR}/cmake/coveralls-cmake/cmake"
+  )
+endif()
 
 # Testing
 # Get test sources
