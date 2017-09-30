@@ -36,6 +36,8 @@ class RigidBody {
  public:
     /// @brief Position
     Vector pos;
+    /// @brief Velocity
+    Vector vel;
     /// @brief Mass
     double mass;
 
@@ -53,14 +55,16 @@ class RigidBody {
         RECT
     };
 
-    /// @brief Create rigid body at (0, 0) with mass of 0
-    RigidBody(): pos(Vector(0, 0)), mass(0) { }
+    /// @brief Create rigid body at (0, 0) with velocity 0 and mass of 0
+    RigidBody(): pos(Vector(0, 0)), vel(Vector(0, 0)), mass(0) { }
 
-    /// @brief Create rigid body with specified position and mass
+    /// @brief Create rigid body with specified position, velocity and mass
     /// @param pos Position
+    /// @param vel Velocity
     /// @param mass Mass
     template <typename T>
-    RigidBody(Vector pos, T mass): pos(pos), mass(mass) { }
+    RigidBody(Vector pos, Vector vel, T mass):
+        pos(pos), vel(vel), mass(mass) { }
 
     /// @brief Get child class type
     virtual Types getType() { }
