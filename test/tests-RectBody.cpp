@@ -25,4 +25,8 @@ TEST_CASE("rectangle bodies can be created") {
         REQUIRE(compare(a.size.y, 43.653));
         REQUIRE(compare(a.mass, 5.2));
     }
+    SECTION("type is correct") {
+        phy::RectBody a;
+        REQUIRE(a.getType() == phy::RigidBody::Types::RECT);
+    }
 }

@@ -21,7 +21,9 @@ set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 
 if(COVERALLS)
   include(Coveralls)
-  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fprofile-arcs -ftest-coverage")
+  set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O2 -g -fno-elide-constructors -fprofile-arcs -ftest-coverage --coverage")
+  set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O2 -g -fno-elide-constructors -fprofile-arcs -ftest-coverage --coverage")
+  set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -O2 -g -fno-elide-constructors -fprofile-arcs -ftest-coverage --coverage")
 endif()
 
 # get sources

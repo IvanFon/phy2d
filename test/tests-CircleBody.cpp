@@ -22,4 +22,8 @@ TEST_CASE("circle bodies can be created") {
         REQUIRE(compare(a.radius, 922.7));
         REQUIRE(compare(a.mass, 5.2));
     }
+    SECTION("type is correct") {
+        phy::CircleBody a;
+        REQUIRE(a.getType() == phy::RigidBody::Types::CIRCLE);
+    }
 }
