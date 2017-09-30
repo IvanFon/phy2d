@@ -1,3 +1,6 @@
+dist: trusty
+sudo: required
+
 language: cpp
 addons:
   apt:
@@ -8,6 +11,6 @@ addons:
       gcc-7
 install:
   - sudo apt-get update -qq
-  - sudo apt-get install -y -qq lcov curl
+  - sudo apt-get install -y -qq
 script:
-  - mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE="Debug" -DTRAVIS="me" -DCOVERALLS="too" -DCOVERALLS_UPLOAD="thanks" .. && make && make coveralls && ./unit-tests
+  - mkdir build && cd build && cmake -DCMAKE_BUILD_TYPE="Debug" -DTRAVIS="me too thanks" .. && make && ./unit-tests

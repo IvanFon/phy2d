@@ -6,8 +6,6 @@ set(CMAKE_CXX_STANDARD 14)
 
 # Options
 set(TRAVIS "NO" CACHE BOOL "If your name isn't Travis don't touch this.")
-set(COVERALLS "NO" CACHE BOOL "Enable test coverage")
-set(COVERALLS_UPLOAD "NO" CACHE BOOL "Upload coverage data to coveralls")
 
 # Fetch some dependencies from Git
 include(ExternalProject)
@@ -16,17 +14,10 @@ find_package(Git REQUIRED)
 # Modules
 set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
   "${CMAKE_SOURCE_DIR}/cmake/"
-  "${CMAKE_SOURCE_DIR}/cmake/coveralls-cmake/cmake"
 )
 
 # get sources
 file(GLOB SOURCES "${CMAKE_SOURCE_DIR}/inc/phy2d/*")
-
-# Test coverage
-if(COVERALLS)
-  include(Coveralls)
-  coveralls_turn_on_coverage()
-endif()
 
 # cppcheck and cpplint
 if(NOT TRAVIS)
@@ -73,15 +64,6 @@ file(GLOB TEST_SOURCES ${PROJECT_SOURCE_DIR}/test/*.cpp)
 # Create the executable and link Catch and phy2d
 add_executable(unit-tests ${TEST_SOURCES})
 target_link_libraries(unit-tests Catch phy2d)
-
-# Test coverage
-if(COVERALLS)
-coveralls_setup(
-  "${SOURCES}"
-  ${COVERALLS_UPLOAD}
-  "${CMAKE_SOURCE_DIR}/cmake/coveralls-cmake/cmake"
-)
-endif()
 
 enable_testing()
 add_test(test_all unit-tests)
