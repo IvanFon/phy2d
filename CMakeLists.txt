@@ -67,21 +67,22 @@ set(phy2d_VERSION_STRING "${phy2d_VERSION_MAJOR}.${phy2d_VERSION_MINOR}.${phy2d_
 add_library(${PROJECT_NAME} INTERFACE)
 add_library(sub::phy2d ALIAS ${PROJECT_NAME})
 
-# Test coverage
-if(COVERALLS)
-  coveralls_setup(
-    "${SOURCES}"
-    ${COVERALLS_UPLOAD}
-    "${CMAKE_SOURCE_DIR}/cmake/coveralls-cmake/cmake"
-  )
-endif()
-
 # Testing
 # Get test sources
 file(GLOB TEST_SOURCES ${PROJECT_SOURCE_DIR}/test/*.cpp)
 # Create the executable and link Catch and phy2d
 add_executable(unit-tests ${TEST_SOURCES})
 target_link_libraries(unit-tests Catch phy2d)
+
+# Test coverage
+if(COVERALLS)
+coveralls_setup(
+  "${SOURCES}"
+  ${COVERALLS_UPLOAD}
+  "${CMAKE_SOURCE_DIR}/cmake/coveralls-cmake/cmake"
+)
+endif()
+
 enable_testing()
 add_test(test_all unit-tests)
 
