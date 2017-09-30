@@ -21,7 +21,7 @@ set (CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
 
 if(COVERALLS)
   include(Coveralls)
-  set(COVERAGE_FLAGS "-g -fno-elide-constructors -fprofile-arcs -ftest-coverage --coverage")
+  set(COVERAGE_FLAGS "-ggdb -fno-elide-constructors -fprofile-arcs -ftest-coverage --coverage")
   set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${COVERAGE_FLAGS}")
   set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} ${COVERAGE_FLAGS}")
   set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} ${COVERAGE_FLAGS}")
