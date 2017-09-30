@@ -159,3 +159,15 @@ TEST_CASE("bodies can be deleted") {
 
     REQUIRE(world.size() == 4);
 }
+
+TEST_CASE("change world settings") {
+    phy::World world;
+
+    SECTION("gravity") {
+        REQUIRE(world.gravity == false);
+        world.set(phy::World::Settings::GRAVITY, true);
+        REQUIRE(world.gravity == true);
+        world.set(phy::World::Settings::GRAVITY, false);
+        REQUIRE(world.gravity == false);
+    }
+}

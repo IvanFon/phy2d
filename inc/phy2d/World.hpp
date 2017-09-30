@@ -43,6 +43,17 @@ class World {
     /// @brief List of bodies in worldz
     std::vector<RigidBody *> bodies;
 
+    /// @brief Settings for world
+    enum Settings {
+        // @brief Gravity
+        GRAVITY
+    };
+
+    /// @{
+    /// @brief World settings
+    bool gravity;
+    /// @}
+
     /// @brief Create empty world
     World() { }
 
@@ -69,6 +80,20 @@ class World {
     /// @param index Index of body to remove
     void removeBody(int index) {
         bodies.erase(bodies.begin() + index);
+    }
+
+    /// @brief Change a setting
+    /// @param setting Setting to change
+    /// @param value New setting value
+    void set(Settings setting, bool value) {
+        switch (setting) {
+            case GRAVITY:
+                gravity = value;
+                break;
+            default:
+                // don't worry about it
+                break;
+        }
     }
 };
 
