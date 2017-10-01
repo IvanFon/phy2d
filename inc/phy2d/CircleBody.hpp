@@ -36,18 +36,17 @@ namespace phy {
 class CircleBody: public RigidBody {
  public:
     /// @brief Create body at (0, 0) with velocity 0, radius 0 and mass 0
-    CircleBody(): RigidBody(Vector(0, 0), Vector(0, 0), 0) {
+    CircleBody(): RigidBody() {
         this->radius = 0;
     }
 
-    /// @brief Create body with specified position, velocity, radius and mass
+    /// @brief Create body with specified position, radius and mass
     /// @param pos Position
-    /// @param vel Velocity
     /// @param radius Radius
     /// @param mass Mass
     template <typename A, typename B>
-    CircleBody(Vector pos, Vector vel, A radius, B mass):
-        RigidBody(pos, vel, mass) {
+    CircleBody(Vector pos, A radius, B mass):
+        RigidBody(pos, mass) {
         this->radius = radius;
     }
 

@@ -36,18 +36,17 @@ namespace phy {
 class RectBody: public RigidBody {
  public:
     /// @brief Create body at (0, 0) with velocity 0, size (0, 0) and mass 0
-    RectBody(): RigidBody(Vector(0, 0), Vector(0, 0), 0) {
+    RectBody(): RigidBody() {
         this->size = Vector(0, 0);
     }
 
     /// @brief Create body with specified position, velocity, size and mass
     /// @param pos Position
-    /// @param vel Velocity
     /// @param size Size
     /// @param mass Mass
     template <typename T>
-    RectBody(Vector pos, Vector vel, Vector size, T mass):
-        RigidBody(pos, vel, mass) {
+    RectBody(Vector pos, Vector size, T mass):
+        RigidBody(pos, mass) {
         this->size = size;
     }
 

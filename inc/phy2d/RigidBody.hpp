@@ -58,16 +58,15 @@ class RigidBody {
     };
 
     /// @brief Create rigid body at (0, 0) with velocity 0 and mass of 0
-    RigidBody(): pos(Vector(0, 0)), vel(Vector(0, 0)),
-        mass(0), lastAcc(Vector(0, 0)) { }
+    RigidBody(): pos(Vector(0, 0)), mass(0),
+        vel(Vector(0, 0)), lastAcc(Vector(0, 0)) { }
 
-    /// @brief Create rigid body with specified position, velocity and mass
+    /// @brief Create rigid body with specified position and mass
     /// @param pos Position
-    /// @param vel Velocity
     /// @param mass Mass
     template <typename T>
-    RigidBody(Vector pos, Vector vel, T mass):
-        pos(pos), vel(vel), mass(mass), lastAcc(Vector(0, 0)) { }
+    RigidBody(Vector pos, T mass):
+        pos(pos), mass(mass), vel(Vector(0, 0)), lastAcc(Vector(0, 0)) { }
 
     /// @brief Get child class type
     virtual Types getType() { }
