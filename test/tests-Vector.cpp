@@ -58,6 +58,19 @@ TEST_CASE("using overloaded operators") {
         phy::Vector res = a + b;
         CHECK(compare(res.x, -4547.4775));
         CHECK(compare(res.y, 9.23));
+
+        res = res + 5.22;
+        CHECK(compare(res.x, -4547.4775 + 5.22));
+        CHECK(compare(res.y, 9.23 + 5.22));
+
+        res += 2;
+        CHECK(compare(res.x, -4547.4775 + 5.22 + 2));
+        CHECK(compare(res.y, 9.23 + 5.22 + 2));
+
+        phy::Vector c;
+        c += phy::Vector(92.3, -22.0);
+        CHECK(compare(c.x, 92.3));
+        CHECK(compare(c.y, -22.0));
     }
     SECTION("subtraction") {
         phy::Vector a(-8.9436, 92.88);
@@ -65,6 +78,19 @@ TEST_CASE("using overloaded operators") {
         phy::Vector res = a - b;
         CHECK(compare(res.x, -49.9446));
         CHECK(compare(res.y, 15.68));
+
+        res = res - 9;
+        CHECK(compare(res.x, -49.9446 - 9));
+        CHECK(compare(res.y, 15.68 - 9));
+
+        res -= 4.21;
+        CHECK(compare(res.x, -49.9446 - 9 - 4.21));
+        CHECK(compare(res.y, 15.68 - 9 - 4.21));
+
+        phy::Vector c;
+        c -= phy::Vector(4, 2);
+        CHECK(compare(c.x, -4));
+        CHECK(compare(c.y, -2));
     }
     SECTION("multiplication") {
         phy::Vector a(-9222.756, 884.2);
@@ -72,6 +98,19 @@ TEST_CASE("using overloaded operators") {
         phy::Vector res = a * b;
         CHECK(compare(res.x, 19552.24272));
         CHECK(compare(res.y, 33511.18));
+
+        res = res * 93.12;
+        CHECK(compare(res.x, 19552.24272 * 93.12));
+        CHECK(compare(res.y, 33511.18 * 93.12));
+
+        res *= -3;
+        CHECK(compare(res.x, 19552.24272 * 93.12 * -3));
+        CHECK(compare(res.y, 33511.18 * 93.12 * -3));
+
+        phy::Vector c;
+        c *= phy::Vector(1.3, 3.7);
+        CHECK(compare(c.x, 0));
+        CHECK(compare(c.y, 0));
     }
     SECTION("division") {
         phy::Vector a(22.37, -9.0);
@@ -79,6 +118,19 @@ TEST_CASE("using overloaded operators") {
         phy::Vector res = a / b;
         CHECK(compare(res.x, -11.185));
         CHECK(compare(res.y, -0.026832031));
+
+        res = res / 9.20012;
+        CHECK(compare(res.x, -11.185 / 9.20012));
+        CHECK(compare(res.y, -0.026832031 / 9.20012));
+
+        res /= 49;
+        CHECK(compare(res.x, -11.185 / 9.20012 / 49));
+        CHECK(compare(res.y, -0.026832031 / 9.20012 / 49));
+
+        phy::Vector c;
+        c /= phy::Vector(44.543, 547.2);
+        CHECK(compare(c.x, 0));
+        CHECK(compare(c.y, 0));
     }
     SECTION("comparison") {
         phy::Vector aa;

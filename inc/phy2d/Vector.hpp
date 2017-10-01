@@ -50,7 +50,7 @@ class Vector {
     /// @brief Creates vector at coordinates
     /// @param X,Y Coordinates
     template <typename T>
-    Vector(T X, T Y) {
+    Vector(const T &X, const T &Y) {
         x = X;
         y = Y;
     }
@@ -59,7 +59,7 @@ class Vector {
     /// @param X X position
     /// @param Y Y position
     template <typename T>
-    void setPos(T X, T Y) {
+    void setPos(const T &X, const T &Y) {
         x = X;
         y = Y;
     }
@@ -77,53 +77,152 @@ class Vector {
         return vect;
     }
 
-    /// @brief Add to another vector
+    /// @brief Add a vector
     /// @param other The other vector to add
-    Vector operator+(Vector other) {
-        Vector vect(0, 0);
-        vect.x = x + other.x;
-        vect.y = y + other.y;
-        return vect;
+    /// @return Sum of the two vectors
+    Vector operator+(const Vector &other) {
+        return Vector(x + other.x, y + other.y);
     }
 
-    /// @brief Subtract from another vector
-    /// @param other The other vector to subtract from
-    Vector operator-(Vector other) {
-        Vector vect(0, 0);
-        vect.x = x - other.x;
-        vect.y = y - other.y;
-        return vect;
+    /// @brief Add a number
+    /// @param other The number to add
+    /// @return Sum of vector and number
+    template <typename T>
+    Vector operator+(const T &other) {
+        return Vector(x + other, y + other);
+    }
+
+    /// @brief Add and set vector
+    /// @param other The vector being added
+    /// @return Sum of this and other vector
+    Vector &operator+=(const Vector &other) {
+        x += other.x;
+        y += other.y;
+        return *this;
+    }
+
+    /// @brief Add and set vector and number
+    /// @param other The number being added
+    /// @return Sum of this vector and number
+    template <typename T>
+    Vector &operator+=(const T &other) {
+        x += other;
+        y += other;
+        return *this;
+    }
+
+    /// @brief Subtract another vector
+    /// @param other The other vector to subtract
+    /// @return Difference of vectors
+    Vector operator-(const Vector &other) {
+        return Vector(x - other.x, y - other.y);
+    }
+
+    /// @brief Subtract a number from vector
+    /// @param other The number to subtract
+    /// @return Difference of vector and number
+    template <typename T>
+    Vector operator-(const T &other) {
+        return Vector(x - other, y - other);
+    }
+
+    /// @brief Subtract from and set vector
+    /// @param other The other vector being subtracted
+    /// @return Difference of vector and number
+    Vector &operator-=(const Vector &other) {
+        x -= other.x;
+        y -= other.y;
+        return *this;
+    }
+
+    /// @brief Subtract from and set vector
+    /// @param other The number to subtract
+    /// @return Difference of vector and number
+    template <typename T>
+    Vector &operator-=(const T &other) {
+        x -= other;
+        y -= other;
+        return *this;
     }
 
     /// @brief Multiply by another vector
     /// @param other The other vector to multiply by
-    Vector operator*(Vector other) {
-        Vector vect(0, 0);
-        vect.x = x * other.x;
-        vect.y = y * other.y;
-        return vect;
+    /// @return Product of vectors
+    Vector operator*(const Vector &other) {
+        return Vector(x * other.x, y * other.y);
+    }
+
+    /// @brief Multiply by a number
+    /// @param other The number to multiply by
+    /// @return Difference
+    template <typename T>
+    Vector operator*(const T &other) {
+        return Vector(x * other, y * other);
+    }
+
+    /// @brief Multiply and set vector
+    /// @param other THe other vector to multiply by
+    /// @return Product of vectors
+    Vector &operator*=(const Vector &other) {
+        x *= other.x;
+        y *= other.y;
+        return *this;
+    }
+
+    /// @brief Multiply and set vector
+    /// @param other The number to multiply by
+    /// @return Product of vector and number
+    template <typename T>
+    Vector &operator*=(const T &other) {
+        x *= other;
+        y *= other;
+        return *this;
     }
 
     /// @brief Divide by another vector
     /// @param other The other vector to divide by
-    Vector operator/(Vector other) {
-        Vector vect(0, 0);
-        vect.x = x / other.x;
-        vect.y = y / other.y;
-        return vect;
+    Vector operator/(const Vector &other) {
+        return Vector(x / other.x, y / other.y);
+    }
+
+    /// @brief Divide by a number
+    /// @param other The number to divide by
+    /// @return Quotient
+    template <typename T>
+    Vector operator/(const T &other) {
+        return Vector(x / other, y / other);
+    }
+
+    /// @brief Divide by and set vector
+    /// @param other The other vector to divide by
+    /// @return Quotient of vectors
+    Vector &operator/=(const Vector &other) {
+        x /= other.x;
+        y /= other.y;
+        return *this;
+    }
+
+    /// @brief Divide by and set vector
+    /// @param other The number to divide by
+    /// @return Quotient
+    template <typename T>
+    Vector &operator/=(const T &other) {
+        x /= other;
+        y /= other;
+        return *this;
     }
 
     /// @brief Compare if equal to another vector
     /// @param other The other vector being compared
     /// @return true if equal, false otherwise
-    bool operator==(Vector other) {
+    bool operator==(const Vector &other) {
         return x == other.x && y == other.y;
     }
 
     /// @brief Compare if not equal to another vector
     /// @param other The other vector being compared
     /// @return true if not equal, false otherwise
-    bool operator!=(Vector other) {
+    bool operator!=(const Vector &other) {
         return !(*this == other);
     }
 
