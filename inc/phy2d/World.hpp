@@ -27,6 +27,7 @@ along with phy2d.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef INC_PHY2D_WORLD_HPP_
 #define INC_PHY2D_WORLD_HPP_
 
+#include <cmath>
 #include <functional>
 #include <vector>
 
@@ -34,6 +35,7 @@ along with phy2d.  If not, see <http://www.gnu.org/licenses/>.
 #include "RigidBody.hpp"
 #include "RectBody.hpp"
 #include "CircleBody.hpp"
+#include "Forces.hpp"
 
 namespace phy {
 
@@ -55,7 +57,7 @@ class World {
     /// @}
 
     /// @brief Create empty world
-    World() { }
+    World(): gravity(false) { }
 
     /// @brief Add rigid body to world
     /// @param body The rigid body to add
@@ -93,6 +95,56 @@ class World {
             default:
                 // don't worry about it
                 break;
+        }
+    }
+
+    /// @brief Move the world forwards
+    /// @param dt Time step to move by in seconds
+    void step(double dt) {
+        // Loop through bodies
+        int i = 0;
+        for (auto body : bodies) {
+            /* Here we use Velocity Verlet integration instead
+             * of the more common Euler integration. This gives
+             * us more accuracy and not much added complexity.
+             * If performance becomes an issue, this can be changed.
+             */
+
+            // Move body
+            /* doing this first means we use the current
+             * frame's position to calculate the new forces
+             */
+            body->pos += body->vel * dt + (body->lastAcc * 0.5 * pow(dt, 2));
+
+            // Total acceleration this timestep
+            Vector totalAcc;
+
+            // Add forces
+            // Settings that need to loop through other bodies
+            if (gravity) {
+                int n = 0;
+                for (auto other : bodies) {
+                    // Check if this isn't the same body
+                    if (i != n) {
+                        if (gravity) {
+                            totalAcc += phy::forces::gravity(*body, *other);
+                        }
+                    }
+
+                    // Increment counter
+                    n++;
+                }
+            }
+
+            // Average acceleration
+            Vector avgAcc = (body->lastAcc + totalAcc) / 2;
+            // Set velocity
+            body->vel += avgAcc * dt;
+            // Save acceleration
+            body->lastAcc = avgAcc;
+
+            // Increment counter
+            i++;
         }
     }
 };
