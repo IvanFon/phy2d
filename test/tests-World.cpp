@@ -129,6 +129,44 @@ TEST_CASE("bodies can be added to and retrieved from world") {
     }
 }
 
+TEST_CASE("get index of bodies") {
+    phy::World world;
+
+    // In world
+    phy::RectBody a;
+    phy::CircleBody b;
+    phy::RectBody c;
+    phy::CircleBody d;
+    phy::CircleBody e;
+    phy::RectBody f;
+    // Not in world
+    phy::CircleBody g;
+    phy::RectBody h;
+
+    world.add(a);
+    world.add(b);
+    world.add(c);
+    world.add(d);
+    world.add(e);
+    world.add(f);
+
+    REQUIRE(world.size() == 6);
+
+    SECTION("in world") {
+        CHECK(world.indexOf(a) == 0);
+        CHECK(world.indexOf(b) == 1);
+        CHECK(world.indexOf(c) == 2);
+        CHECK(world.indexOf(d) == 3);
+        CHECK(world.indexOf(e) == 4);
+        CHECK(world.indexOf(f) == 5);
+    }
+
+    SECTION("not in world") {
+        CHECK(world.indexOf(g) == -1);
+        CHECK(world.indexOf(h) == -1);
+    }
+}
+
 TEST_CASE("bodies can be deleted") {
     phy::World world;
 
@@ -148,10 +186,12 @@ TEST_CASE("bodies can be deleted") {
 
     REQUIRE(world.size() == 6);
 
-    world.removeBody(3);
-    world.removeBody(1);
-
-    REQUIRE(world.size() == 4);
+    SECTION("by index") {
+        world.removeBody(3);
+        world.removeBody(1);
+    
+        REQUIRE(world.size() == 4);
+    }
 }
 
 TEST_CASE("change world settings") {

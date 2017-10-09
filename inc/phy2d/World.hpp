@@ -59,10 +59,11 @@ class World {
     /// @brief Create empty world
     World(): gravity(false) { }
 
-    /// @brief Add rigid body to world
-    /// @param body The rigid body to add
-    void add(RigidBody &body) {  /* NOLINT(runtime/references) */
-        bodies.push_back(&body);
+    /// @brief Access bodies in world
+    /// @param index Index of item to access
+    /// @return Item
+    auto operator[](int index) {
+        return bodies[index];
     }
 
     /// @brief Get number of bodies in world
@@ -71,17 +72,31 @@ class World {
         return bodies.size();
     }
 
-    /// @brief Access bodies in world
-    /// @param index Index of item to access
-    /// @return Item
-    auto operator[](int index) {
-        return bodies[index];
+    /// @brief Add rigid body to world
+    /// @param body The rigid body to add
+    void add(RigidBody &body) {  /* NOLINT(runtime/references) */
+        bodies.push_back(&body);
     }
 
     /// @brief Remove body from world
     /// @param index Index of body to remove
     void removeBody(int index) {
         bodies.erase(bodies.begin() + index);
+    }
+
+    /// @brief Get index of a body in the world
+    /// @param body Body to get index of
+    /// @return Index of body, -1 if not found
+    int indexOf(RigidBody &body) {  /* NOLINT(runtime/references) */
+        // Search bodies
+        for (int i = 0; i < bodies.size(); i++) {
+            if (bodies[i] == &body) {
+                return i;
+            }
+        }
+
+        // Not found
+        return -1;
     }
 
     /// @brief Change a setting
