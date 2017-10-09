@@ -72,22 +72,10 @@ class World {
         return bodies.size();
     }
 
-    /// @brief Add rigid body to world
-    /// @param body The rigid body to add
-    void add(RigidBody &body) {  /* NOLINT(runtime/references) */
-        bodies.push_back(&body);
-    }
-
-    /// @brief Remove body from world
-    /// @param index Index of body to remove
-    void removeBody(int index) {
-        bodies.erase(bodies.begin() + index);
-    }
-
     /// @brief Get index of a body in the world
     /// @param body Body to get index of
     /// @return Index of body, -1 if not found
-    int indexOf(RigidBody &body) {  /* NOLINT(runtime/references) */
+    int indexOf(const RigidBody &body) {
         // Search bodies
         for (int i = 0; i < bodies.size(); i++) {
             if (bodies[i] == &body) {
@@ -97,6 +85,24 @@ class World {
 
         // Not found
         return -1;
+    }
+
+    /// @brief Add rigid body to world
+    /// @param body The rigid body to add
+    void add(RigidBody &body) {  /* NOLINT(runtime/references) */
+        bodies.push_back(&body);
+    }
+
+    /// @brief Remove body from world by index
+    /// @param index Index of body to remove
+    void removeBody(int index) {
+        bodies.erase(bodies.begin() + index);
+    }
+
+    /// @brief Remove a body from the world
+    /// @param body Body to remove
+    void removeBody(const RigidBody &body) {
+        bodies.erase(bodies.begin() + indexOf(body));
     }
 
     /// @brief Change a setting

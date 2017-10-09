@@ -189,6 +189,20 @@ TEST_CASE("bodies can be deleted") {
         world.removeBody(1);
     
         REQUIRE(world.size() == 4);
+        REQUIRE(world[0] == &a);
+        REQUIRE(world[1] == &c);
+        REQUIRE(world[2] == &e);
+        REQUIRE(world[3] == &f);
+    }
+    SECTION("by reference") {
+        world.removeBody(d);
+        world.removeBody(b);
+
+        REQUIRE(world.size() == 4);
+        REQUIRE(world[0] == &a);
+        REQUIRE(world[1] == &c);
+        REQUIRE(world[2] == &e);
+        REQUIRE(world[3] == &f);
     }
 }
 
