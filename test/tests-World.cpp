@@ -1,7 +1,5 @@
 #include "catch.hpp"
 
-#include "utils.cpp"
-
 #include "phy2d/World.hpp"
 
 TEST_CASE("worlds can be created") {
@@ -28,23 +26,23 @@ TEST_CASE("bodies can be added to and retrieved from world") {
 
         REQUIRE(world.size() == 3);
 
-        REQUIRE(compare(world[0]->pos.x, 0));
-        REQUIRE(compare(world[0]->pos.y, 0));
-        REQUIRE(compare(world[0]->vel.x, 0));
-        REQUIRE(compare(world[0]->vel.y, 0));
-        REQUIRE(compare(world[0]->mass, 0));
+        REQUIRE(world[0]->pos.x == Approx(0));
+        REQUIRE(world[0]->pos.y == Approx(0));
+        REQUIRE(world[0]->vel.x == Approx(0));
+        REQUIRE(world[0]->vel.y == Approx(0));
+        REQUIRE(world[0]->mass == Approx(0));
 
-        REQUIRE(compare(world[1]->pos.x, -5.0));
-        REQUIRE(compare(world[1]->pos.y, 9.020));
-        REQUIRE(compare(world[1]->vel.x, 0));
-        REQUIRE(compare(world[1]->vel.y, 0));
-        REQUIRE(compare(world[1]->mass, 2));
+        REQUIRE(world[1]->pos.x == Approx(-5.0));
+        REQUIRE(world[1]->pos.y == Approx(9.020));
+        REQUIRE(world[1]->vel.x == Approx(0));
+        REQUIRE(world[1]->vel.y == Approx(0));
+        REQUIRE(world[1]->mass == Approx(2));
 
-        REQUIRE(compare(world[2]->pos.x, 211.95));
-        REQUIRE(compare(world[2]->pos.y, 2.0));
-        REQUIRE(compare(world[2]->vel.x, 0));
-        REQUIRE(compare(world[2]->vel.y, 0));
-        REQUIRE(compare(world[2]->mass, 3));
+        REQUIRE(world[2]->pos.x == Approx(211.95));
+        REQUIRE(world[2]->pos.y == Approx(2.0));
+        REQUIRE(world[2]->vel.x == Approx(0));
+        REQUIRE(world[2]->vel.y == Approx(0));
+        REQUIRE(world[2]->mass == Approx(3));
     }
     SECTION("rectangular bodies") {
         phy::RectBody a;
@@ -64,29 +62,29 @@ TEST_CASE("bodies can be added to and retrieved from world") {
 
         REQUIRE(world.size() == 3);
 
-        REQUIRE(compare(world[0]->pos.x, 0));
-        REQUIRE(compare(world[0]->pos.y, 0));
-        REQUIRE(compare(world[0]->vel.x, 0));
-        REQUIRE(compare(world[0]->vel.y, 0));
-        REQUIRE(compare(world[0]->size.x, 0));
-        REQUIRE(compare(world[0]->size.y, 0));
-        REQUIRE(compare(world[0]->mass, 0));
+        REQUIRE(world[0]->pos.x == Approx(0));
+        REQUIRE(world[0]->pos.y == Approx(0));
+        REQUIRE(world[0]->vel.x == Approx(0));
+        REQUIRE(world[0]->vel.y == Approx(0));
+        REQUIRE(world[0]->size.x == Approx(0));
+        REQUIRE(world[0]->size.y == Approx(0));
+        REQUIRE(world[0]->mass == Approx(0));
 
-        REQUIRE(compare(world[1]->pos.x, 9));
-        REQUIRE(compare(world[1]->pos.y, 5));
-        REQUIRE(compare(world[1]->vel.x, 0));
-        REQUIRE(compare(world[1]->vel.y, 0));
-        REQUIRE(compare(world[1]->size.x, 23.0));
-        REQUIRE(compare(world[1]->size.y, 9.3));
-        REQUIRE(compare(world[1]->mass, 2));
+        REQUIRE(world[1]->pos.x == Approx(9));
+        REQUIRE(world[1]->pos.y == Approx(5));
+        REQUIRE(world[1]->vel.x == Approx(0));
+        REQUIRE(world[1]->vel.y == Approx(0));
+        REQUIRE(world[1]->size.x == Approx(23.0));
+        REQUIRE(world[1]->size.y == Approx(9.3));
+        REQUIRE(world[1]->mass == Approx(2));
 
-        REQUIRE(compare(world[2]->pos.x, -922.1));
-        REQUIRE(compare(world[2]->pos.y, 333.33333));
-        REQUIRE(compare(world[2]->vel.x, 0));
-        REQUIRE(compare(world[2]->vel.y, 0));
-        REQUIRE(compare(world[2]->size.x, 9.4));
-        REQUIRE(compare(world[2]->size.y, 3.0));
-        REQUIRE(compare(world[2]->mass, 3.233));
+        REQUIRE(world[2]->pos.x == Approx(-922.1));
+        REQUIRE(world[2]->pos.y == Approx(333.33333));
+        REQUIRE(world[2]->vel.x == Approx(0));
+        REQUIRE(world[2]->vel.y == Approx(0));
+        REQUIRE(world[2]->size.x == Approx(9.4));
+        REQUIRE(world[2]->size.y == Approx(3.0));
+        REQUIRE(world[2]->mass == Approx(3.233));
     }
     SECTION("circular bodies") {
         phy::CircleBody a;
@@ -106,26 +104,26 @@ TEST_CASE("bodies can be added to and retrieved from world") {
 
         REQUIRE(world.size() == 3);
 
-        REQUIRE(compare(world[0]->pos.x, 0));
-        REQUIRE(compare(world[0]->pos.y, 0));
-        REQUIRE(compare(world[0]->vel.x, 0));
-        REQUIRE(compare(world[0]->vel.y, 0));
-        REQUIRE(compare(world[0]->radius, 0));
-        REQUIRE(compare(world[0]->mass, 0));
+        REQUIRE(world[0]->pos.x == Approx(0));
+        REQUIRE(world[0]->pos.y == Approx(0));
+        REQUIRE(world[0]->vel.x == Approx(0));
+        REQUIRE(world[0]->vel.y == Approx(0));
+        REQUIRE(world[0]->radius == Approx(0));
+        REQUIRE(world[0]->mass == Approx(0));
 
-        REQUIRE(compare(world[1]->pos.x, -4.0));
-        REQUIRE(compare(world[1]->pos.y, 12.23));
-        REQUIRE(compare(world[1]->vel.x, 0));
-        REQUIRE(compare(world[1]->vel.y, 0));
-        REQUIRE(compare(world[1]->radius, 10));
-        REQUIRE(compare(world[1]->mass, 4));
+        REQUIRE(world[1]->pos.x == Approx(-4.0));
+        REQUIRE(world[1]->pos.y == Approx(12.23));
+        REQUIRE(world[1]->vel.x == Approx(0));
+        REQUIRE(world[1]->vel.y == Approx(0));
+        REQUIRE(world[1]->radius == Approx(10));
+        REQUIRE(world[1]->mass == Approx(4));
 
-        REQUIRE(compare(world[2]->pos.x, 1.0));
-        REQUIRE(compare(world[2]->pos.y, -1.0));
-        REQUIRE(compare(world[2]->vel.x, 0));
-        REQUIRE(compare(world[2]->vel.y, 0));
-        REQUIRE(compare(world[2]->radius, 52));
-        REQUIRE(compare(world[2]->mass, 9.66));
+        REQUIRE(world[2]->pos.x == Approx(1.0));
+        REQUIRE(world[2]->pos.y == Approx(-1.0));
+        REQUIRE(world[2]->vel.x == Approx(0));
+        REQUIRE(world[2]->vel.y == Approx(0));
+        REQUIRE(world[2]->radius == Approx(52));
+        REQUIRE(world[2]->mass == Approx(9.66));
     }
 }
 
