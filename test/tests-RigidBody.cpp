@@ -2,6 +2,10 @@
 
 #include "phy2d/RigidBody.hpp"
 
+#include "phy2d/Vector.hpp"
+#include "phy2d/CircleBody.hpp"
+#include "phy2d/RectBody.hpp"
+
 TEST_CASE("rigid bodies can be created") {
     SECTION("default contructor") {
         phy::RigidBody a;
@@ -20,5 +24,16 @@ TEST_CASE("rigid bodies can be created") {
         REQUIRE(a.vel.x == Approx(0));
         REQUIRE(a.vel.y == Approx(0));
         REQUIRE(a.mass == Approx(5.2));
+    }
+}
+
+TEST_CASE("bodies can be collided") {
+    SECTION("two circle bodies") {
+        phy::CircleBody a(phy::Vector(0, 0), 5, 10);
+        phy::CircleBody b(phy::Vector(5, 5), 5, 10);
+        REQUIRE(phy::RigidBody::collides(a, b));
+
+        phy::CircleBody c(phy::Vector(10, 10), 5, 10);
+        REQUIRE_FALSE(phy::RigidBody::collides(a, c));
     }
 }

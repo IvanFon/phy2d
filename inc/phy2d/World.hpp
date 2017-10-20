@@ -48,16 +48,19 @@ class World {
     /// @brief Settings for world
     enum Settings {
         // @brief Gravity
-        GRAVITY
+        GRAVITY,
+        /// @brief Collisions
+        COLLIDE
     };
 
     /// @{
     /// @brief World settings
     bool gravity;
+    bool collide;
     /// @}
 
     /// @brief Create empty world
-    World(): gravity(false) { }
+    World(): gravity(false), collide(false) { }
 
     /// @brief Access bodies in world
     /// @param index Index of item to access
@@ -89,7 +92,7 @@ class World {
 
     /// @brief Add rigid body to world
     /// @param body The rigid body to add
-    void add(RigidBody &body) {  /* NOLINT(runtime/references) */
+    void add(RigidBody &body) {
         bodies.push_back(&body);
     }
 
@@ -113,6 +116,9 @@ class World {
             case GRAVITY:
                 gravity = value;
                 break;
+            case COLLIDE:
+                collide = value;
+                break;
             default:
                 // don't worry about it
                 break;
@@ -122,6 +128,8 @@ class World {
     /// @brief Move the world forwards
     /// @param dt Time step to move by in seconds
     void step(double dt) {
+        // Bodies to remove
+        std::vector<phy::RigidBody *> toRemove;
         // Loop through bodies
         int i = 0;
         for (auto body : bodies) {
@@ -142,13 +150,18 @@ class World {
 
             // Add forces
             // Settings that need to loop through other bodies
-            if (gravity) {
+            if (gravity || collide) {
                 int n = 0;
                 for (auto other : bodies) {
                     // Check if this isn't the same body
                     if (i != n) {
                         if (gravity) {
                             totalAcc += phy::forces::gravity(*body, *other);
+                        }
+                        if (collide) {
+                            if (phy::RigidBody::collides(*body, *other)) {
+                                toRemove.push_back(body);
+                            }
                         }
                     }
 
@@ -166,6 +179,11 @@ class World {
 
             // Increment counter
             i++;
+        }
+
+        // Remove bodies
+        for (auto body : toRemove) {
+            this->removeBody(*body);
         }
     }
 };

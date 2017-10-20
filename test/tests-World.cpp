@@ -216,4 +216,43 @@ TEST_CASE("change world settings") {
         world.set(phy::World::Settings::GRAVITY, false);
         REQUIRE(world.gravity == false);
     }
+
+    SECTION("collide") {
+        REQUIRE(world.collide == false);
+        world.set(phy::World::Settings::COLLIDE, true);
+        REQUIRE(world.collide == true);
+        world.set(phy::World::Settings::COLLIDE, false);
+        REQUIRE(world.collide == false);
+    }
+}
+
+TEST_CASE("world step") {
+    SECTION("collide") {
+        SECTION("same position") {
+            phy::World world;
+            world.set(phy::World::Settings::COLLIDE, true);
+
+            phy::CircleBody a(phy::Vector(0, 0), 10, 10);
+            phy::CircleBody b(phy::Vector(0, 0), 10, 10);
+            world.add(a);
+            world.add(b);
+
+            REQUIRE(world.size() == 2);
+            world.step(1);
+            REQUIRE(world.size() == 0);
+        }
+        SECTION("different position") {
+            phy::World world;
+            world.set(phy::World::Settings::COLLIDE, true);
+
+            phy::CircleBody a(phy::Vector(-7, 10), 10, 10);
+            phy::CircleBody b(phy::Vector(12, -1), 10, 10);
+            world.add(a);
+            world.add(b);
+
+            REQUIRE(world.size() == 2);
+            world.step(1);
+            REQUIRE(world.size() == 2);
+        }
+    }
 }

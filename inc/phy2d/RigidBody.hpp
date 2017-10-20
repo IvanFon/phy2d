@@ -70,6 +70,17 @@ class RigidBody {
 
     /// @brief Get child class type
     virtual Types getType() { }
+
+    /// @brief Checks for collision between two rigid bodies
+    static bool collides(RigidBody &a, RigidBody &b) {
+        // Two circle bodies
+        if (a.getType() == Types::CIRCLE && b.getType() == Types::CIRCLE) {
+            return (phy::Vector::dist(a.pos, b.pos) < (a.radius + b.radius));
+        }
+
+        /// @todo
+        return false;
+    }
 };
 
 }  // namespace phy
