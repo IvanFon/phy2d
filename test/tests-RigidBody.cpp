@@ -36,4 +36,13 @@ TEST_CASE("bodies can be collided") {
         phy::CircleBody c(phy::Vector(10, 10), 5, 10);
         REQUIRE_FALSE(phy::RigidBody::collides(a, c));
     }
+
+    SECTION("two rectangle bodies") {
+        phy::RectBody a(phy::Vector(5, 5), phy::Vector(50, 50), 10);
+        phy::RectBody b(phy::Vector(20, 10), phy::Vector(10, 10), 10);
+        REQUIRE(phy::RigidBody::collides(a, b));
+
+        phy::RectBody c(phy::Vector(5, 40), phy::Vector(15, 15), 10);
+        REQUIRE_FALSE(phy::RigidBody::collides(b, c));
+    }
 }

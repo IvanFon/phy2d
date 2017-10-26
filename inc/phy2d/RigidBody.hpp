@@ -76,6 +76,10 @@ class RigidBody {
         // Two circle bodies
         if (a.getType() == Types::CIRCLE && b.getType() == Types::CIRCLE) {
             return (phy::Vector::dist(a.pos, b.pos) < (a.radius + b.radius));
+        } else if (a.getType() == Types::RECT && b.getType() == Types::RECT) {
+            return (a.pos.x < b.pos.x + b.size.x &&
+                    a.pos.x + a.size.x > b.pos.x &&
+                    a.size.y + a.pos.y > b.pos.y);
         }
 
         /// @todo
