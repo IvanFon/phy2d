@@ -56,8 +56,7 @@ class Vector {
     }
 
     /// @brief Set position
-    /// @param X X position
-    /// @param Y Y position
+    /// @param X,Y Coordinates
     template <typename T>
     void setPos(const T &X, const T &Y) {
         x = X;
