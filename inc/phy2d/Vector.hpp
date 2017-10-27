@@ -232,6 +232,13 @@ class Vector {
     static double dist(Vector a, Vector b) {
         return hypot(b.x - a.x, b.y - a.y);
     }
+
+    /// @brief Cross product
+    /// @param a,b Vectors
+    /// @return Cross product
+    static double cross(const Vector &a, const Vector &b) {
+        return (a.x * b.y) - (a.y * b.x);
+    }
 };
 
 }  // namespace phy

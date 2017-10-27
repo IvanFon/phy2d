@@ -218,3 +218,15 @@ TEST_CASE("normalize vectors") {
     CHECK(resc.x == Approx(0.123411831));
     CHECK(resc.y == Approx(0.992352513));
 }
+
+TEST_CASE("cross product") {
+    REQUIRE(phy::Vector::cross(
+        phy::Vector(0, 0),
+        phy::Vector(0, 0)) == Approx(0));
+    REQUIRE(phy::Vector::cross(
+        phy::Vector(5, 6),
+        phy::Vector(10, 9)) == Approx(-15));
+    REQUIRE(phy::Vector::cross(
+        phy::Vector(-11.0, 6.57),
+        phy::Vector(42.42, 0.0)) == Approx(-278.699));
+}
