@@ -38,7 +38,7 @@ namespace phy {
 namespace forces {
 
 /// @brief Calculate gravitational acceleration between two bodies
-/// @param a, a The rigid bodies to calculate gravity between
+/// @param a,b The rigid bodies to calculate gravity between
 /// @return Gravitational acceleration for a
 Vector gravity(const RigidBody &a, const RigidBody &b) {
     // Calculate gravitational force
