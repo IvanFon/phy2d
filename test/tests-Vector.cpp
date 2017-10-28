@@ -220,13 +220,21 @@ TEST_CASE("normalize vectors") {
 }
 
 TEST_CASE("cross product") {
-    REQUIRE(phy::Vector::cross(
-        phy::Vector(0, 0),
-        phy::Vector(0, 0)) == Approx(0));
-    REQUIRE(phy::Vector::cross(
-        phy::Vector(5, 6),
-        phy::Vector(10, 9)) == Approx(-15));
-    REQUIRE(phy::Vector::cross(
-        phy::Vector(-11.0, 6.57),
-        phy::Vector(42.42, 0.0)) == Approx(-278.699));
+    SECTION("two vectors") {
+        REQUIRE(phy::Vector::cross(
+            phy::Vector(0, 0),
+            phy::Vector(0, 0)) == Approx(0));
+        REQUIRE(phy::Vector::cross(
+            phy::Vector(5, 6),
+            phy::Vector(10, 9)) == Approx(-15));
+        REQUIRE(phy::Vector::cross(
+            phy::Vector(-11.0, 6.57),
+            phy::Vector(42.42, 0.0)) == Approx(-278.699));
+    }
+    SECTION("vector and scalar") {
+        REQUIRE(phy::Vector::cross(
+            phy::Vector(4, 8), 5) == phy::Vector(40, -20));
+        REQUIRE(phy::Vector::cross(
+            9, phy::Vector(-3, 5)) == phy::Vector(-45, -27));
+    }
 }

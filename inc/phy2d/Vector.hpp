@@ -238,6 +238,21 @@ class Vector {
     static double cross(const Vector &a, const Vector &b) {
         return (a.x * b.y) - (a.y * b.x);
     }
+
+    /// @{
+    /// @brief Cross product
+    /// @param a Vector
+    /// @param b Scalar
+    /// @return Cross product
+    template <typename T>
+    static Vector cross(const Vector &a, T b) {
+        return Vector(b * a.y, -b * a.x);
+    }
+    template <typename T>
+    static Vector cross(T b, const Vector &a) {
+        return Vector(-b * a.y, b * a.x);
+    }
+    /// @}
 };
 
 }  // namespace phy
