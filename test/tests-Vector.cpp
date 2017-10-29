@@ -233,7 +233,11 @@ TEST_CASE("cross product") {
     }
     SECTION("vector and scalar") {
         REQUIRE(phy::Vector::cross(
+            phy::Vector(2, 3), 0) == phy::Vector(0, 0));
+        REQUIRE(phy::Vector::cross(
             phy::Vector(4, 8), 5) == phy::Vector(40, -20));
+        REQUIRE(phy::Vector::cross(
+            0, phy::Vector(9, 7)) == phy::Vector(0, 0));
         REQUIRE(phy::Vector::cross(
             9, phy::Vector(-3, 5)) == phy::Vector(-45, -27));
     }
