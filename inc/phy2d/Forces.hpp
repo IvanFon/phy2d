@@ -40,9 +40,9 @@ namespace forces {
 /// @brief Calculate gravitational acceleration between two bodies
 /// @param a,b The rigid bodies to calculate gravity between
 /// @return Gravitational acceleration for a
-Vector gravity(const RigidBody &a, const RigidBody &b) {
+inline Vector gravity(const RigidBody &a, const RigidBody &b) {
     // Calculate gravitational force
-    double fg = (constants::GRAVITY * a.mass * a.mass) /
+    double fg = (constants::GRAVITY * a.mass * b.mass) /
         pow(Vector::dist(a.pos, b.pos), 2);
 
     // Calculate acceleration
