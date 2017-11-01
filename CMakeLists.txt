@@ -63,7 +63,7 @@ target_include_directories(Catch INTERFACE ${CATCH_INCLUDE_DIR})
 # Version
 set(phy2d_VERSION_MAJOR 0)
 set(phy2d_VERSION_MINOR 0)
-set(phy2d_VERSION_PATCH 1)
+set(phy2d_VERSION_PATCH 2)
 set(phy2d_VERSION_STRING "${phy2d_VERSION_MAJOR}.${phy2d_VERSION_MINOR}.${phy2d_VERSION_PATCH}")
 
 add_library(${PROJECT_NAME} INTERFACE)
