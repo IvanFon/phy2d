@@ -2,6 +2,8 @@
 
 #include "phy2d/Vector.hpp"
 
+#include "phy2d/Constants.hpp"
+
 TEST_CASE("vectors can be created") {
     SECTION("default constructor") {
         phy::Vector a;
@@ -217,6 +219,33 @@ TEST_CASE("normalize vectors") {
     phy::Vector resc = c.norm();
     CHECK(resc.x == Approx(0.123411831));
     CHECK(resc.y == Approx(0.992352513));
+}
+
+TEST_CASE("rotate vectors") {
+    phy::Vector a(1, 0);
+    a.rotate(0, phy::Vector(0, 0));
+    CHECK(a.x == Approx(1));
+    CHECK(a.y == Approx(0));
+    a.rotate(phy::constants::PI, phy::Vector(0, 0));
+    CHECK(a.x == Approx(-1));
+    CHECK(a.y == Approx(0));
+    a.rotate((phy::constants::PI / 2.0), phy::Vector(0, 0));
+    CHECK(a.x == Approx(0));
+    CHECK(a.y == Approx(-1));
+    a.rotate(phy::constants::PI, phy::Vector(0, 0));
+    CHECK(a.x == Approx(0));
+    CHECK(a.y == Approx(1));
+    a.rotate((phy::constants::PI / 2.0) + (phy::constants::PI / 4.0), phy::Vector(0, 0));
+    CHECK(a.x == Approx(-0.7071));
+    CHECK(a.y == Approx(-0.7071));
+
+    phy::Vector b(-4, 4);
+    b.rotate((phy::constants::PI / 2.0), phy::Vector(-4, 2));
+    CHECK(b.x == Approx(-6));
+    CHECK(b.y == Approx(2));
+    b.rotate(((3 * phy::constants::PI) / 2.0), phy::Vector(-4, 2));
+    CHECK(b.x == Approx(-4));
+    CHECK(b.y == Approx(4));
 }
 
 TEST_CASE("cross product") {

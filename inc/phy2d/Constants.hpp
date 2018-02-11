@@ -34,6 +34,9 @@ namespace constants {
 /// @brief Universal gravitation constant
 const double GRAVITY = 6.673e-11;
 
+/// @brief Pi
+const double PI = atan(1) * 4;
+
 }  // namespace constants
 
 }  // namespace phy

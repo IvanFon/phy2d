@@ -76,6 +76,19 @@ class Vector {
         return vect;
     }
 
+    /// @brief Rotate vector
+    /// @param theta Angle to rotate by
+    /// @param centre Centre of rotation
+    template <typename T>
+    void rotate(const T theta, const Vector &centre) {
+        double xx = (cos(theta) * (x - centre.x)) -
+            (sin(theta) * (y - centre.y)) + centre.x;
+        double yy = (sin(theta) * (x - centre.x)) +
+            (cos(theta) * (y - centre.y)) + centre.y;
+        x = xx;
+        y = yy;
+    }
+
     /// @brief Add a vector
     /// @param other The other vector to add
     /// @return Sum of the two vectors
