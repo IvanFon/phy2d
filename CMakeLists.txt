@@ -76,6 +76,7 @@ file(GLOB TEST_SOURCES ${PROJECT_SOURCE_DIR}/test/*.cpp)
 # Create the executable and link Catch and phy2d
 add_executable(unit-tests ${TEST_SOURCES})
 target_link_libraries(unit-tests Catch phy2d)
+target_include_directories(unit-tests PRIVATE ${CATCH_INCLUDE_DIR})
 
 if(COVERALLS)
   coveralls_setup(
