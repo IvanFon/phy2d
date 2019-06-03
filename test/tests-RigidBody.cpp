@@ -25,6 +25,10 @@ TEST_CASE("rigid bodies can be created") {
         REQUIRE(a.vel.y == Approx(0));
         REQUIRE(a.mass == Approx(5.2));
     }
+    SECTION("type is correct") {
+        phy::RigidBody a;
+        REQUIRE(a.getType() == phy::RigidBody::Types::BASE);
+    }
 }
 
 TEST_CASE("bodies can be collided") {

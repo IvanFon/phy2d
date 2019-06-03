@@ -51,6 +51,8 @@ class RigidBody {
 
     /// @brief Types of child classes
     enum Types {
+        /// @brief Base class
+        BASE,
         /// @brief CircleBody
         CIRCLE,
         /// @brief RectBody
@@ -69,7 +71,9 @@ class RigidBody {
         pos(pos), mass(mass), vel(Vector(0, 0)), lastAcc(Vector(0, 0)) { }
 
     /// @brief Get child class type
-    virtual Types getType() { }
+    virtual Types getType() {
+      return Types::BASE;
+    }
 
     /// @brief Checks for collision between two rigid bodies
     static bool collides(RigidBody &a, RigidBody &b) {
