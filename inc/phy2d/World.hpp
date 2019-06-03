@@ -119,9 +119,6 @@ class World {
             case COLLIDE:
                 collide = value;
                 break;
-            default:
-                // don't worry about it
-                break;
         }
     }
 
