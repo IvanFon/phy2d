@@ -27,33 +27,32 @@ along with phy2d.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef INC_PHY2D_RECTBODY_HPP_
 #define INC_PHY2D_RECTBODY_HPP_
 
-#include "Vector.hpp"
 #include "RigidBody.hpp"
+#include "Vector.hpp"
 
 namespace phy {
 
 /// @brief Rectangular rigid body class
-class RectBody: public RigidBody {
+class RectBody : public RigidBody {
  public:
-    /// @brief Create body at (0, 0) with velocity 0, size (0, 0) and mass 0
-    RectBody(): RigidBody() {
-        this->size = Vector(0, 0);
-    }
+  /// @brief Create body at (0, 0) with velocity 0, size (0, 0) and mass 0
+  RectBody() : RigidBody() {
+    this->size = Vector(0, 0);
+  }
 
-    /// @brief Create body with specified position, velocity, size and mass
-    /// @param pos Position
-    /// @param size Size
-    /// @param mass Mass
-    template <typename T>
-    RectBody(Vector pos, Vector size, T mass):
-        RigidBody(pos, mass) {
-        this->size = size;
-    }
+  /// @brief Create body with specified position, velocity, size and mass
+  /// @param pos Position
+  /// @param size Size
+  /// @param mass Mass
+  template <typename T>
+  RectBody(Vector pos, Vector size, T mass) : RigidBody(pos, mass) {
+    this->size = size;
+  }
 
-    /// @brief Get my type
-    Types getType() {
-        return RECT;
-    }
+  /// @brief Get my type
+  Types getType() {
+    return RECT;
+  }
 };
 
 }  // namespace phy

@@ -1,0 +1,14 @@
+---
+BasedOnStyle: Google
+AllowShortBlocksOnASingleLine: 'false'
+AllowShortFunctionsOnASingleLine: None
+BreakBeforeBraces: Custom
+BraceWrapping:
+  SplitEmptyFunction: false
+ColumnLimit: '100'
+Language: Cpp
+Standard: Cpp11
+TabWidth: '2'
+UseTab: Never
+
+...

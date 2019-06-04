@@ -39,7 +39,7 @@ namespace util {
 /// @return Length of hypotenuse
 template <typename T>
 double hypot(T a, T b) {
-    return sqrt(pow(a, 2) + pow(b, 2));
+  return sqrt(pow(a, 2) + pow(b, 2));
 }
 
 }  // namespace util

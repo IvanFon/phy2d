@@ -30,8 +30,8 @@ along with phy2d.  If not, see <http://www.gnu.org/licenses/>.
 #include <cmath>
 
 #include "Constants.hpp"
-#include "Vector.hpp"
 #include "RigidBody.hpp"
+#include "Vector.hpp"
 
 namespace phy {
 
@@ -41,18 +41,17 @@ namespace forces {
 /// @param a,b The rigid bodies to calculate gravity between
 /// @return Gravitational acceleration for a
 inline Vector gravity(const RigidBody &a, const RigidBody &b) {
-    // Calculate gravitational force
-    double fg = (constants::GRAVITY * a.mass * b.mass) /
-        pow(Vector::dist(a.pos, b.pos), 2);
+  // Calculate gravitational force
+  double fg = (constants::GRAVITY * a.mass * b.mass) / pow(Vector::dist(a.pos, b.pos), 2);
 
-    // Calculate acceleration
-    double ag = fg / a.mass;
+  // Calculate acceleration
+  double ag = fg / a.mass;
 
-    // Angle between objects
-    double theta = atan2(b.pos.y - a.pos.y, b.pos.x - a.pos.x);
+  // Angle between objects
+  double theta = atan2(b.pos.y - a.pos.y, b.pos.x - a.pos.x);
 
-    // Return acceleration
-    return Vector(sin(theta) * ag, cos(theta) * ag);
+  // Return acceleration
+  return Vector(sin(theta) * ag, cos(theta) * ag);
 }
 
 }  // namespace forces

@@ -27,33 +27,32 @@ along with phy2d.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef INC_PHY2D_CIRCLEBODY_HPP_
 #define INC_PHY2D_CIRCLEBODY_HPP_
 
-#include "Vector.hpp"
 #include "RigidBody.hpp"
+#include "Vector.hpp"
 
 namespace phy {
 
 /// @brief Circular rigid body class
-class CircleBody: public RigidBody {
+class CircleBody : public RigidBody {
  public:
-    /// @brief Create body at (0, 0) with velocity 0, radius 0 and mass 0
-    CircleBody(): RigidBody() {
-        this->radius = 0;
-    }
+  /// @brief Create body at (0, 0) with velocity 0, radius 0 and mass 0
+  CircleBody() : RigidBody() {
+    this->radius = 0;
+  }
 
-    /// @brief Create body with specified position, radius and mass
-    /// @param pos Position
-    /// @param radius Radius
-    /// @param mass Mass
-    template <typename A, typename B>
-    CircleBody(Vector pos, A radius, B mass):
-        RigidBody(pos, mass) {
-        this->radius = radius;
-    }
+  /// @brief Create body with specified position, radius and mass
+  /// @param pos Position
+  /// @param radius Radius
+  /// @param mass Mass
+  template <typename A, typename B>
+  CircleBody(Vector pos, A radius, B mass) : RigidBody(pos, mass) {
+    this->radius = radius;
+  }
 
-    /// @brief Get my type
-    Types getType() {
-        return CIRCLE;
-    }
+  /// @brief Get my type
+  Types getType() {
+    return CIRCLE;
+  }
 };
 
 }  // namespace phy
