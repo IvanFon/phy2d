@@ -1,7 +1,7 @@
 /*
 phy2d - A small, simple C++ physics library
 
-Copyright (C) 2017 Ivan Fonseca
+Copyright (C) 2019 Ivan Fonseca
 
 phy2d is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
