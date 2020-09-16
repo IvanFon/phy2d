@@ -18,43 +18,28 @@ along with phy2d.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 /**
- * @file RectBody.hpp
- * @brief Rectangular rigid body class
+ * @file Fixture.hpp
+ * @brief Fixture class
  * @author Ivan Fonseca
  * @copyright GPL-3.0
  */
 
-#ifndef INC_PHY2D_CIRCLEBODY_HPP_
-#define INC_PHY2D_CIRCLEBODY_HPP_
+#ifndef INC_PHY2D_FIXTURE_HPP_
+#define INC_PHY2D_FIXTURE_HPP_
 
-#include "RigidBody.hpp"
-#include "Vector.hpp"
+#include "Shape.hpp"
 
 namespace phy {
 
-/// @brief Circular rigid body class
-class CircleBody : public RigidBody {
+/// @brief Fixture class
+class Fixture {
  public:
-  /// @brief Create body at (0, 0) with velocity 0, radius 0 and mass 0
-  CircleBody() : RigidBody() {
-    this->radius = 0;
-  }
-
-  /// @brief Create body with specified position, radius and mass
-  /// @param pos Position
-  /// @param radius Radius
-  /// @param mass Mass
-  template <typename A, typename B>
-  CircleBody(Vector pos, A radius, B mass) : RigidBody(pos, mass) {
-    this->radius = radius;
-  }
-
-  /// @brief Get my type
-  Types getType() {
-    return CIRCLE;
-  }
+  /// @brief This fixture's shape
+  Shape *shape;
+  /// @brief Type of shape attached to this fixture
+  Shape::Type shapeType;
 };
 
 }  // namespace phy
 
-#endif  // INC_PHY2D_CIRCLEBODY_HPP_
+#endif  // INC_PHY2D_FIXTURE_HPP_

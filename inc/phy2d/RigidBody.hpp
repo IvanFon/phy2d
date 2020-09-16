@@ -27,6 +27,7 @@ along with phy2d.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef INC_PHY2D_RIGIDBODY_HPP_
 #define INC_PHY2D_RIGIDBODY_HPP_
 
+#include "Fixture.hpp"
 #include "Vector.hpp"
 
 namespace phy {
@@ -43,21 +44,8 @@ class RigidBody {
   /// @brief Acceleration during previous step
   Vector lastAcc;
 
-  /// @brief Size of RectBody child class
-  Vector size;
-
-  /// @brief Radius of CircleBody child class
-  double radius;
-
-  /// @brief Types of child classes
-  enum Types {
-    /// @brief Base class
-    BASE,
-    /// @brief CircleBody
-    CIRCLE,
-    /// @brief RectBody
-    RECT
-  };
+  /// @brief Collision fixture attached to this body
+  Fixture fixture;
 
   /// @brief Create rigid body at (0, 0) with velocity 0 and mass of 0
   RigidBody() : pos(Vector(0, 0)), mass(0), vel(Vector(0, 0)), lastAcc(Vector(0, 0)) {
@@ -68,25 +56,6 @@ class RigidBody {
   /// @param mass Mass
   template <typename T>
   RigidBody(Vector pos, T mass) : pos(pos), mass(mass), vel(Vector(0, 0)), lastAcc(Vector(0, 0)) {
-  }
-
-  /// @brief Get child class type
-  virtual Types getType() {
-    return Types::BASE;
-  }
-
-  /// @brief Checks for collision between two rigid bodies
-  static bool collides(RigidBody &a, RigidBody &b) {
-    // Two circle bodies
-    if (a.getType() == Types::CIRCLE && b.getType() == Types::CIRCLE) {
-      return (phy::Vector::dist(a.pos, b.pos) < (a.radius + b.radius));
-    } else if (a.getType() == Types::RECT && b.getType() == Types::RECT) {
-      return (a.pos.x < b.pos.x + b.size.x && a.pos.x + a.size.x > b.pos.x &&
-              a.size.y + a.pos.y > b.pos.y);
-    }
-
-    /// @todo
-    return false;
   }
 };
 
